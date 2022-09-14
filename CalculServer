@@ -1,0 +1,17 @@
+import java.rmi.*;
+
+public class CalculServer {
+    public static void main(String[] args){
+        try{
+            // Load the service
+            RMICalculimpl calculService = new RMICalculimpl();
+            String res = "rmi://localhost/RMICalcul";
+
+            System.out.println("Binding service implementation to registry...");
+            // Register with service
+            Naming.rebind(res, calculService);
+        } catch(Exception e){
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
